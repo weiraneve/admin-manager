@@ -29,7 +29,7 @@ class EditGoodsModal extends React.Component {
 
     onCancel = () => {
         this.props.onCancel();
-        //删除图片
+        // 删除图片
         if (this.state.img.key && this.state.img.key.indexOf('http') === -1 ) {
             del('/upload', {key: this.state.img.key}).then();
         }

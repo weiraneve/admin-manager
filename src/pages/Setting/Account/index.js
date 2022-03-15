@@ -28,10 +28,12 @@ class Index extends React.Component {
         isShowEditPermissionModal: false,
         roles:[]
     };
+
     componentDidMount() {
-        this.getAdminUsers();
-        this.getRoles();
+        this.getAdminUsers().then();
+        this.getRoles().then();
     }
+
     getRoles = async () =>{
         const res = await get('/role/findAll');
         if (res.code === 200) {
@@ -40,6 +42,7 @@ class Index extends React.Component {
             });
         }
     };
+
     getAdminUsers = async (page = 1) => {
         const { pagination } = this.state;
         const fields = this.props.form.getFieldsValue();
@@ -75,7 +78,7 @@ class Index extends React.Component {
         await this.setState({
             pagination: page
         });
-        this.getAdminUsers(page.current)
+        this.getAdminUsers(page.current).then()
     };
 
     /**
@@ -97,7 +100,7 @@ class Index extends React.Component {
                     this.setState({
                         selectedRowKeys: []
                     });
-                    this.getAdminUsers()
+                    this.getAdminUsers().then()
                 }
             }
         })
@@ -113,7 +116,7 @@ class Index extends React.Component {
                 message: '修改成功',
                 description: res.msg,
             });
-            this.getAdminUsers()
+            this.getAdminUsers().then()
         }
     };
 
@@ -124,7 +127,7 @@ class Index extends React.Component {
         this.setState({
             isShowCreateModal: visible
         });
-        this.getAdminUsers();
+        this.getAdminUsers().then();
     };
 
     /**
@@ -145,7 +148,7 @@ class Index extends React.Component {
             isShowEditModal: false,
             adminUser: {}
         });
-        this.getAdminUsers()
+        this.getAdminUsers().then()
     };
 
     /**
@@ -156,7 +159,7 @@ class Index extends React.Component {
             isShowEditPermissionModal: false,
             adminUser: {}
         });
-        this.getAdminUsers()
+        this.getAdminUsers().then()
     };
 
     /**
@@ -173,7 +176,7 @@ class Index extends React.Component {
      * 搜索函数
      */
     onSearch = () => {
-        this.getAdminUsers()
+        this.getAdminUsers().then()
     };
 
     /**
@@ -184,7 +187,7 @@ class Index extends React.Component {
         this.setState({
             selectedRowKeys: []
         });
-        this.getAdminUsers();
+        this.getAdminUsers().then();
         message.success('重置成功')
     };
     

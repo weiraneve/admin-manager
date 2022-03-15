@@ -22,7 +22,7 @@ class Sift extends React.Component {
         },
     };
     componentDidMount() {
-        this.getSift()
+        this.getSift().then();
     }
     getSift = async (page = 1) => {
         const { pagination } = this.state;
@@ -59,14 +59,14 @@ class Sift extends React.Component {
         await this.setState({
             pagination: page
         });
-        this.getSift(page.current)
+        this.getSift(page.current).then();
     };
 
     /**
      * 搜索函数
      */
     onSearch = () => {
-        this.getSift()
+        this.getSift().then();
     };
 
     /**
@@ -74,7 +74,7 @@ class Sift extends React.Component {
      */
     onReset = () => {
         this.props.form.resetFields();
-        this.getSift();
+        this.getSift().then();
         message.success('重置成功')
     };
 
