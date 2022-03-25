@@ -201,7 +201,7 @@ class Goods extends React.Component {
                 render: (text) => text ? text : '未设置',
             },
             {
-                title: '商品图片链接',
+                title: '商品图片',
                 dataIndex: 'goodsImg',
                 align: 'center',
                 render: (text) => <img style={{height:'100px',width:'200px'}} src={text} alt={''}/>,
