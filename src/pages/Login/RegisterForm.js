@@ -171,7 +171,7 @@ class RegisterForm extends React.Component {
                         </div>
                     </Form.Item>
                 </Form>
-                <div className="footer">欢迎登陆后台管理系统</div>
+                <div className="footer">欢迎登录后台管理系统</div>
             </div>
         )
     }

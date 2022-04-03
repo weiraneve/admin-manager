@@ -46,7 +46,7 @@ class LoginForm extends React.Component {
             });
             return
         }
-        // 此处逻辑是先查询用户名是否存在，再进行登陆
+        // 此处逻辑是先查询用户名是否存在，再进行登录
         const res = await get(`/session/findByUsername?username=${values.username}`);
         if (res.code !== 200) {
             this.props.form.setFields({
@@ -206,13 +206,13 @@ class LoginForm extends React.Component {
                     </Form.Item>
                     <Form.Item>
                         <div className="btn-box">
-                            <div className="loginBtn" onClick={this.onSubmit}>登陆</div>
+                            <div className="loginBtn" onClick={this.onSubmit}>登录</div>
                             <div className="registerBtn" onClick={this.goRegister}>注册</div>
                         </div>
                     </Form.Item>
                 </Form>
 
-                <div className="footer">欢迎登陆后台管理系统</div>
+                <div className="footer">欢迎登录后台管理系统</div>
             </div>
         )
     }

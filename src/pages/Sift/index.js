@@ -106,7 +106,7 @@ class Sift extends React.Component {
                 dataIndex: 'createdAt',
             },
             {
-                title: '用户登陆更新时间',
+                title: '用户登录更新时间',
                 dataIndex: 'updatedAt',
             },
         ];
@@ -173,7 +173,7 @@ class Sift extends React.Component {
                 render: (text) => text && moment(text).format('YYYY-MM-DD HH:mm:ss'),
             },
             {
-                title: '用户登陆更新时间',
+                title: '用户登录更新时间',
                 dataIndex: 'updatedAt',
                 align: 'center',
                 render: (text) => text && moment(text).format('YYYY-MM-DD HH:mm:ss'),
