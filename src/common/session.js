@@ -27,11 +27,7 @@ function _getStorage(name) {
 }
 
 function _setStorage(name, value) {
-  let item = localStorage.setItem(name, value);
-  if (item) {
-    return item;
-  }
-  return ''
+  localStorage.setItem(name, value);
 }
 
 // function _getCookie(name) {
