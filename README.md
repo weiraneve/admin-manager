@@ -1,6 +1,3 @@
-# 前言
-优化界面。对应seckillcloud-0.0.8以及之后版本
-
 # 简介
 针对前后端分离的需求，构建了以React以及相关开发脚手架开发的前端系统，负责与后端的商品秒杀控制和管理者权限系统服务器。
 
@@ -23,8 +20,7 @@
 [自己总结](./THINK.md)
 
 参考网上部分代码：
-- [Java后端部分](https://gitee.com/Explore_Mr_Pei/admin_api)
-- [React 前端部分](https://gitee.com/Explore_Mr_Pei/admin_manager)
+- [react权限管理系统](https://gitee.com/Explore_Mr_Pei/admin_manager)
 
 报错参考：
 - [启动 code1 报错](https://www.jianshu.com/p/c06c4d38636e)

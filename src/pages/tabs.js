@@ -9,18 +9,14 @@ const Home = LoadableComponent(import('./Home/index'), true);
 const Order = LoadableComponent(import('./Order/index'), true);
 const Goods = LoadableComponent(import('./Goods/index'), true);
 const Seckill = LoadableComponent(import('./Seckill/index'), true);
-const Rule = LoadableComponent(import('./Rule/index'), true);
-const Sift = LoadableComponent(import('./Sift/index'), true);
 
-// import Sift from './Sift/index'; 效果相当于上述语句去掉加载效果组件
+// import Seckill from './Seckill/index'; 效果相当于上述语句去掉加载效果组件
 
 const tabs = {
     Home: <Home />,
     Goods:<Goods />,
     Seckill:<Seckill />,
     Order: <Order />,
-    Rule: <Rule />,
-    Sift: <Sift />,
     Menu: <Menu />,
     Permission: <Permission/>,
     Role: <Role />,

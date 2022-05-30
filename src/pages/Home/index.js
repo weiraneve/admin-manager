@@ -53,13 +53,6 @@ class Home extends React.Component {
                 fontSize: 20,
             }
         };
-        const siftConfig = {
-            number: [this.state.siftCount],
-            content: '用户初筛数{nt}个',
-            style: {
-                fontSize: 20,
-            }
-        };
         return(
             <BorderBox1 style={styles.BorderBox1}>
                 <BorderBox8 style={styles.BorderBox11}>
@@ -70,9 +63,6 @@ class Home extends React.Component {
                 </BorderBox8>
                 <BorderBox8 style={styles.BorderBox11}>
                     <DigitalFlop config={orderConfig} style={styles.DigitalFlop} />
-                </BorderBox8>
-                <BorderBox8 style={styles.BorderBox11}>
-                    <DigitalFlop config={siftConfig} style={styles.DigitalFlop} />
                 </BorderBox8>
             </BorderBox1>
         )
