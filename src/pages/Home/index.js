@@ -78,7 +78,7 @@ const styles = {
     BorderBox11:{
         display:'inline-block',
         width: '22%',
-        height:'150px',
+        height:'200px',
         margin:'50px',
         padding:'5px'
     },
