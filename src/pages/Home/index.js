@@ -73,7 +73,7 @@ const styles = {
     BorderBox1:{
         textAlign:'center',
         padding:'15px',
-        height:'80vh'
+        height:'90vh'
     },
     BorderBox11:{
         display:'inline-block',
