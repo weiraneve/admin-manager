@@ -17,7 +17,7 @@
 - 有时候启动时会报错babel-jest错误，看具体报错内容，去lock文件中删除与项目制定babel-jest版本不符的依赖，再删除node_modules包，再yarn install 命令重新安装。
 
 # 参考
-[自己总结](./THINK.md)
+[自己总结](./docs/THINK.md)
 
 参考网上部分代码：
 - [react权限管理系统](https://gitee.com/Explore_Mr_Pei/admin_manager)
