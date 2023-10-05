@@ -47,16 +47,18 @@ class EditPasswordModal extends React.Component {
             password: values.oldPassword
         });
         if (res.code === 200) {
-            const res2 = await patch('/session/updatePass', {
+            const resUpdatePass = await patch('/session/updatePass', {
                 username: values.username,
                 password: values.password
             });
-            if (res2.code === 200) {
+            if (resUpdatePass.code === 200) {
                 message.success('修改密码成功');
                 this.handleCancel();
                 //更新token
-                authenticateSuccess('Bearer ' + res2.data);
+                authenticateSuccess('Bearer ' + resUpdatePass.data);
             }
+        } else {
+            message.error('修改密码失败，请正确输入')
         }
     };
 
@@ -101,6 +103,7 @@ class EditPasswordModal extends React.Component {
                             ]
                         })(
                             <Input
+                                onPressEnter={this.handleOk}
                                 placeholder="请输入新密码"
                                 autoComplete="new-password"
                                 type={'password'} />
