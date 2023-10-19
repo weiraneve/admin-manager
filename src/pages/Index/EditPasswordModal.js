@@ -1,12 +1,12 @@
 import React from 'react'
-import { Modal, Input, Form, message } from 'antd'
-import { connect } from 'react-redux'
-import { createFormField } from '../../common/util'
-import {post, patch} from "../../common/ajax";
+import {Modal, Input, Form, message} from 'antd'
+import {connect} from 'react-redux'
+import {createFormField} from '../../common/util'
+import {patch} from "../../common/ajax";
 import {authenticateSuccess} from "../../common/session";
 
 const store = connect(
-    (state) => ({ user: state.user }),
+    (state) => ({user: state.user}),
 );
 const form = Form.create({
 
@@ -42,33 +42,28 @@ class EditPasswordModal extends React.Component {
      * 提交修改密码
      */
     onSubmit = async (values) => {
-        const res = await post('/login', {
+        const result = await patch('/session/updatePass', {
             username: values.username,
-            password: values.oldPassword
+            oldPassword: values.oldPassword,
+            newPassword: values.password
         });
-        if (res.code === 200) {
-            const resUpdatePass = await patch('/session/updatePass', {
-                username: values.username,
-                password: values.password
-            });
-            if (resUpdatePass.code === 200) {
-                message.success('修改密码成功');
-                this.handleCancel();
-                //更新token
-                authenticateSuccess('Bearer ' + resUpdatePass.data);
-            }
+        if (result.code === 200) {
+            message.success('修改密码成功');
+            this.handleCancel();
+            //更新token
+            authenticateSuccess('Bearer ' + result.data);
         } else {
-            message.error('修改密码失败，请正确输入')
+            message.error(result.msg || '网络错误')
         }
     };
 
     render() {
-        const { visible } = this.props;
-        const { getFieldDecorator, getFieldValue } = this.props.form;
+        const {visible} = this.props;
+        const {getFieldDecorator, getFieldValue} = this.props.form;
 
         const formItemLayout = {
-            labelCol: { span: 6 },
-            wrapperCol: { span: 14 },
+            labelCol: {span: 6},
+            wrapperCol: {span: 14},
         };
         return (
             <Modal
@@ -80,40 +75,40 @@ class EditPasswordModal extends React.Component {
                 <Form>
                     <Form.Item label={'用户名'} {...formItemLayout}>
                         {getFieldDecorator('username', {})(
-                            <Input disabled />
+                            <Input disabled/>
                         )}
                     </Form.Item>
                     <Form.Item label={'旧密码'} {...formItemLayout}>
                         {getFieldDecorator('oldPassword', {
-                            rules: [{ required: true, message: '请输入旧密码' }],
+                            rules: [{required: true, message: '请输入旧密码'}],
                         })(
                             <Input
                                 placeholder="请输入旧密码"
                                 autoComplete="new-password"
-                                type={'password'} />
+                                type={'password'}/>
                         )}
                     </Form.Item>
                     <Form.Item label={'新密码'} {...formItemLayout}>
                         {getFieldDecorator('password', {
                             validateFirst: true,
                             rules: [
-                                { required: true, message: '密码不能为空' },
-                                { pattern: '^[^ ]+$', message: '密码不能有空格' },
-                                { min: 3, message: '密码至少为3位' },
+                                {required: true, message: '密码不能为空'},
+                                {pattern: '^[^ ]+$', message: '密码不能有空格'},
+                                {min: 3, message: '密码至少为3位'},
                             ]
                         })(
                             <Input
                                 onPressEnter={this.handleOk}
                                 placeholder="请输入新密码"
                                 autoComplete="new-password"
-                                type={'password'} />
+                                type={'password'}/>
                         )}
                     </Form.Item>
                     <Form.Item label={'确认密码'} {...formItemLayout}>
                         {getFieldDecorator('confirmPassword', {
                             validateFirst: true,
                             rules: [
-                                { required: true, message: '请确认密码' },
+                                {required: true, message: '请确认密码'},
                                 {
                                     validator: (rule, value, callback) => {
                                         if (value !== getFieldValue('password')) {
@@ -128,7 +123,7 @@ class EditPasswordModal extends React.Component {
                                 onPressEnter={this.handleOk}
                                 placeholder="请确认密码"
                                 autoComplete="new-password"
-                                type={'password'} />
+                                type={'password'}/>
                         )}
                     </Form.Item>
                 </Form>
