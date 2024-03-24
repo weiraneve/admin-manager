@@ -1,17 +1,15 @@
 import React from 'react'
 import '../../styles/style_login.less'
 import {isAuthenticated} from '../../common/session'
-import { withRouter } from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import LoadableComponent from '../../common/LoadableComponent'
 
-const RegisterForm = LoadableComponent(import('./RegisterForm'));
 const LoginForm = LoadableComponent(import('./LoginForm'));
 const Background = LoadableComponent(import('../../components/Background'));
 
 @withRouter
 class Login extends React.Component {
     state = {
-        show: 'login',    //当前展示的是登录框还是注册框
         binding: false,
     };
 
@@ -23,33 +21,14 @@ class Login extends React.Component {
         }
     }
 
-    /**
-     * 切换登录和注册的面板
-     */
-    toggleShow = () => {
-        this.setState({
-            show: this.state.show === 'login' ? 'register' : 'login'
-        })
-    };
-    closeBind = ()=>{
-        this.setState({
-            binding: false,
-            code: null
-        })
-    };
-    
     render() {
-        const { show } = this.state;
         return (
             <Background url={require('../../assets/images/bg.jpg')}>
-                { <div className="login-container">
-                        <div className={`box ${show === 'login' ? 'active' : ''}`}>
-                            <LoginForm toggleShow={this.toggleShow} />
-                        </div>
-                        <div className={`box ${show === 'register' ? 'active' : ''}`}>
-                            <RegisterForm toggleShow={this.toggleShow} />
-                        </div>
+                {<div className="login-container">
+                    <div className={`box active`}>
+                        <LoginForm/>
                     </div>
+                </div>
                 }
             </Background>
         )

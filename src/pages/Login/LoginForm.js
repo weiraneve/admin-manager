@@ -1,9 +1,9 @@
 import React from 'react'
 import {Form, Input, Row, Col, message} from 'antd'
-import { randomNum } from '../../common/util'
+import {randomNum} from '../../common/util'
 import PromptBox from '../../components/PromptBox/index'
-import { withRouter } from 'react-router-dom'
-import { post, get } from '../../common/ajax'
+import {withRouter} from 'react-router-dom'
+import {post, get} from '../../common/ajax'
 import {authenticateSuccess} from "../../common/session";
 
 @withRouter @Form.create()
@@ -12,24 +12,17 @@ class LoginForm extends React.Component {
         focusItem: -1,   //当前焦点聚焦在哪一项上
         code: ''  //验证码
     };
+
     componentDidMount() {
         this._createCode()
     }
+
     onSubmit = () => {
         this.props.form.validateFields((errors, values) => {
             if (!errors) {
                 this.onLogin(values).then()
             }
         });
-    };
-
-    /**
-     * 转换面板为注册面板
-     */
-    goRegister = () => {
-        this.props.form.resetFields();
-        this.props.toggleShow();
-        this._createCode()
     };
 
     /**
@@ -65,7 +58,7 @@ class LoginForm extends React.Component {
         });
         if (res2.code !== 200) {
             this.props.form.setFields({
-                password:{
+                password: {
                     value: '',
                     errors: [new Error(res2.msg)]
                 }
@@ -75,7 +68,7 @@ class LoginForm extends React.Component {
             return
         }
         await authenticateSuccess('Bearer ' + res2.data);
-        message.loading('加载中...', 0.5, ()=>this.props.history.push('/'));
+        message.loading('加载中...', 0.5, () => this.props.history.push('/'));
         this.props.history.push('/');
     };
 
@@ -118,68 +111,69 @@ class LoginForm extends React.Component {
     };
 
     render() {
-        const { getFieldDecorator, getFieldError } = this.props.form;
-        const { focusItem, code } = this.state;
+        const {getFieldDecorator, getFieldError} = this.props.form;
+        const {focusItem, code} = this.state;
         return (
             <div>
                 <h3 className="title">管理员登录</h3>
                 <Form hideRequiredMark>
                     <Form.Item
-                        help={<PromptBox info={getFieldError('username') && getFieldError('username')[0]} />}
-                        style={{ marginBottom: 10 }}
-                        wrapperCol={{ span: 20, pull: focusItem === 0 ? 1 : 0 }}
-                        labelCol={{ span: 3, pull: focusItem === 0 ? 1 : 0 }}
-                        label={<span className='iconfont icon-User' style={{ opacity: focusItem === 0 ? 1 : 0.6 }} />}
+                        help={<PromptBox info={getFieldError('username') && getFieldError('username')[0]}/>}
+                        style={{marginBottom: 10}}
+                        wrapperCol={{span: 20, pull: focusItem === 0 ? 1 : 0}}
+                        labelCol={{span: 3, pull: focusItem === 0 ? 1 : 0}}
+                        label={<span className='iconfont icon-User' style={{opacity: focusItem === 0 ? 1 : 0.6}}/>}
                         colon={false}>
                         {getFieldDecorator('username', {
                             validateFirst: true,
                             rules: [
-                                { required: true, message: '请输入用户名' },
-                                { pattern: /^[^\s']+$/, message: '不能输入特殊字符' },
+                                {required: true, message: '请输入用户名'},
+                                {pattern: /^[^\s']+$/, message: '不能输入特殊字符'},
                             ]
                         })(
                             <Input
                                 className="myInput"
-                                onFocus={() => this.setState({ focusItem: 0 })}
-                                onBlur={() => this.setState({ focusItem: -1 })}
+                                onFocus={() => this.setState({focusItem: 0})}
+                                onBlur={() => this.setState({focusItem: -1})}
                                 onPressEnter={this.onSubmit}
                                 placeholder="用户名"
                             />
                         )}
                     </Form.Item>
                     <Form.Item
-                        help={<PromptBox info={getFieldError('password') && getFieldError('password')[0]} />}
-                        style={{ marginBottom: 10 }}
-                        wrapperCol={{ span: 20, pull: focusItem === 1 ? 1 : 0 }}
-                        labelCol={{ span: 3, pull: focusItem === 1 ? 1 : 0 }}
-                        label={<span className='iconfont icon-suo1' style={{ opacity: focusItem === 1 ? 1 : 0.6 }} />}
+                        help={<PromptBox info={getFieldError('password') && getFieldError('password')[0]}/>}
+                        style={{marginBottom: 10}}
+                        wrapperCol={{span: 20, pull: focusItem === 1 ? 1 : 0}}
+                        labelCol={{span: 3, pull: focusItem === 1 ? 1 : 0}}
+                        label={<span className='iconfont icon-suo1' style={{opacity: focusItem === 1 ? 1 : 0.6}}/>}
                         colon={false}>
                         {getFieldDecorator('password', {
-                            rules: [{ required: true, message: '请输入密码' }]
+                            rules: [{required: true, message: '请输入密码'}]
                         })(
                             <Input
                                 className="myInput"
                                 type="password"
-                                onFocus={() => this.setState({ focusItem: 1 })}
-                                onBlur={() => this.setState({ focusItem: -1 })}
+                                onFocus={() => this.setState({focusItem: 1})}
+                                onBlur={() => this.setState({focusItem: -1})}
                                 onPressEnter={this.onSubmit}
                                 placeholder="密码"
                             />
                         )}
                     </Form.Item>
                     <Form.Item
-                        help={<PromptBox info={getFieldError('captcha') && getFieldError('captcha')[0]} />}
-                        style={{ marginBottom: 20 }}
-                        wrapperCol={{ span: 20, pull: focusItem === 2 ? 1 : 0 }}
-                        labelCol={{ span: 3, pull: focusItem === 2 ? 1 : 0 }}
-                        label={<span className='iconfont icon-securityCode-b' style={{ opacity: focusItem === 2 ? 1 : 0.6 }} />}
+                        help={<PromptBox info={getFieldError('captcha') && getFieldError('captcha')[0]}/>}
+                        style={{marginBottom: 20}}
+                        wrapperCol={{span: 20, pull: focusItem === 2 ? 1 : 0}}
+                        labelCol={{span: 3, pull: focusItem === 2 ? 1 : 0}}
+                        label={<span className='iconfont icon-securityCode-b'
+                                     style={{opacity: focusItem === 2 ? 1 : 0.6}}/>}
                         colon={false}>
                         <Row gutter={8}>
                             <Col span={15}>
                                 {getFieldDecorator('captcha', {
                                     validateFirst: true,
                                     rules: [
-                                        { required: true, message: '请输入验证码' },
+                                        {required: true, message: '请输入验证码'},
                                         {
                                             validator: (rule, value, callback) => {
                                                 if (value.length >= 4 && code.toUpperCase() !== value.toUpperCase()) {
@@ -192,22 +186,22 @@ class LoginForm extends React.Component {
                                 })(
                                     <Input
                                         className="myInput"
-                                        onFocus={() => this.setState({ focusItem: 2 })}
-                                        onBlur={() => this.setState({ focusItem: -1 })}
+                                        onFocus={() => this.setState({focusItem: 2})}
+                                        onBlur={() => this.setState({focusItem: -1})}
                                         onPressEnter={this.onSubmit}
                                         placeholder="验证码"
                                     />
                                 )}
                             </Col>
                             <Col span={9}>
-                                <canvas onClick={this.changeCaptcha} width="80" height='40' ref={el => this.canvas = el} />
+                                <canvas onClick={this.changeCaptcha} width="80" height='40'
+                                        ref={el => this.canvas = el}/>
                             </Col>
                         </Row>
                     </Form.Item>
                     <Form.Item>
                         <div className="btn-box">
                             <div className="loginBtn" onClick={this.onSubmit}>登录</div>
-                            <div className="registerBtn" onClick={this.goRegister}>注册</div>
                         </div>
                     </Form.Item>
                 </Form>
