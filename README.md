@@ -1,7 +1,8 @@
 # 简介
 针对前后端分离的需求，构建了以React以及相关开发脚手架开发的前端系统，负责与后端的商品秒杀控制和管理者权限系统服务器。
 
-## 项目的web前端与客户端
+## 项目的前端与后端
+- [本项目的后端](https://github.com/weiraneve/seckillcloud)
 - [本项目的秒杀部分Web前端](https://github.com/weiraneve/seckill-front)
 - [本项目的后台配置部分Web前端](https://github.com/weiraneve/admin-manager)
 - [本项目的flutter客户端](https://github.com/weiraneve/seckill-deal)
